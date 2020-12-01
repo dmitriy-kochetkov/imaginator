@@ -1,14 +1,20 @@
-import cv2
 import os
 import json
+
+import cv2
+
+
+BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+IMG_PATH = os.path.join(BASE_PATH, 'img')
+DEFAULT_CONFIG_PATH = os.path.join(BASE_PATH, 'config.txt')
 
 
 class Imaginator:
 
-    def __init__(self, config_file='config.txt', base_img_name='background.png', overlay_img_name='overlay.png'):
+    def __init__(self, config_file=DEFAULT_CONFIG_PATH, base_img_name='background.png', overlay_img_name='overlay.png'):
         self.config = config_file
-        self.base_img_path = 'img' + os.sep + base_img_name
-        self.over_img_path = 'img' + os.sep + overlay_img_name
+        self.base_img_path = os.path.join(IMG_PATH, base_img_name)
+        self.over_img_path = os.path.join(IMG_PATH, overlay_img_name)
         self.target = 'output'
         self.matrix = []
         self.base_img = None
