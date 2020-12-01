@@ -1,5 +1,7 @@
 .idea
 venv
+__pycache__
 img/*.psd
 *.mp4
+*.pyc
 test.py
