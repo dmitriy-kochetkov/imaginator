@@ -1,0 +1,5 @@
+.idea
+venv
+img/*.psd
+*.mp4
+test.py
