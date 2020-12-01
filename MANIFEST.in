@@ -1,0 +1,2 @@
+include imaginator/img/*
+include imaginator/config.txt
