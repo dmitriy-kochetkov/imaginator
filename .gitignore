@@ -1,5 +1,6 @@
 .idea
 venv
 img
+imaginator/__pycache__
 *.mp4
 test.py
