@@ -13,7 +13,7 @@ def create_video(name='default.mp4', frame_rate=24.0, text_line='HELLO WORLD'):
 
     text_line = text_line.upper()
 
-    imgntr = Imaginator(base_img_name='background_black.png')
+    imgntr = Imaginator(base_img_name='background_full.png', overlay_img_name='overlay_full.png')
     imgntr.load()
 
     matrix = []
@@ -21,24 +21,28 @@ def create_video(name='default.mp4', frame_rate=24.0, text_line='HELLO WORLD'):
         matrix.append([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     frame = imgntr.base_img
+    frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
     height, width, layers = frame.shape
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     video = cv2.VideoWriter(name, fourcc, frame_rate, (width, height))
 
     frame = make_frame(imgntr, matrix)
+    frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
     video.write(frame)
 
     for line in reversed_symbols_line_generator(text_line):
         matrix[1:] = matrix[:-1]
         matrix[0] = line
         frame = make_frame(imgntr, matrix)
+        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         video.write(frame)
 
     for i in range(len(matrix)):
         matrix[1:] = matrix[:-1]
         matrix[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         frame = make_frame(imgntr, matrix)
+        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         video.write(frame)
 
     cv2.destroyAllWindows()

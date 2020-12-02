@@ -1,5 +1,5 @@
 .idea
 venv
-img/*.psd
+img
 *.mp4
 test.py
