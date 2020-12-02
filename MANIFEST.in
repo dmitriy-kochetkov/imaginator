@@ -1,2 +1,3 @@
 include imaginator/img/*
 include imaginator/config.txt
+include imaginator/letters.json
