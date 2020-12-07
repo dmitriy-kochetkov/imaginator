@@ -2,7 +2,7 @@
 
 
 __author__ = 'Dmitriy Kochetkov'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 
 from imaginator.entry import create_video
