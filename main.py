@@ -1,6 +1,5 @@
 """Startup script of the application."""
 
-
 from imaginator import create_video
 
 if __name__ == '__main__':

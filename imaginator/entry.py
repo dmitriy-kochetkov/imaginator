@@ -16,7 +16,7 @@ def create_video(name: str = 'default.mp4', frame_rate: float = 24.0, text_line:
 
     text_line = text_line.upper()
 
-    imgntr = Imaginator(base_img_name='background_full.png', overlay_img_name='overlay_full.png')
+    imgntr = Imaginator(base_img_name='background.png', overlay_img_name='overlay.png')
 
     matrix = []
     for row in range(24):
