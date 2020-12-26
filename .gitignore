@@ -1,5 +1,6 @@
 .idea
 venv
+temp
 /img
 __pycache__
 *.py[cod]

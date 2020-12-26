@@ -9,22 +9,23 @@ import numpy
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 IMG_PATH = os.path.join(BASE_PATH, 'img')
 DEFAULT_CONFIG_PATH = os.path.join(BASE_PATH, 'config.txt')
+DEFAULT_BASE_IMG = os.path.join(IMG_PATH, 'background.png')
+DEFAULT_OVER_IMG = os.path.join(IMG_PATH, 'overlay.png')
 
 
 class Imaginator:
     def __init__(
-            self, config_file: str = DEFAULT_CONFIG_PATH, base_img_name: str = 'background.png',
-            overlay_img_name: str = 'overlay.png'
+            self, config_file: str = DEFAULT_CONFIG_PATH, base_img_path: str = DEFAULT_BASE_IMG,
+            overlay_img_path: str = DEFAULT_OVER_IMG
     ) -> None:
         """
         :param config_file: path to config file with coordinates (json)
-        :param base_img_name: path to base image
-        :param overlay_img_name: path to overlay image
+        :param base_img_path: path to base image
+        :param overlay_img_path: path to overlay image
         """
         self.config = config_file
-        self.base_img_path = os.path.join(IMG_PATH, base_img_name)
-        self.over_img_path = os.path.join(IMG_PATH, overlay_img_name)
-        self.target = 'output'
+        self.base_img_path = base_img_path
+        self.over_img_path = overlay_img_path
         self.matrix = load_json_config(self.config)
         self.base_img = load_image(self.base_img_path)
         self.over_img = load_image(self.over_img_path)
@@ -42,7 +43,6 @@ class Imaginator:
             bounds = self.matrix[matrix_i][matrix_j]
             mixed_image[bounds['y0']:bounds['y1'], bounds['x0']:bounds['x1']] = self.over_img[bounds['y0']:bounds['y1'], bounds['x0']:bounds['x1']]
 
-        name = self.target + os.sep + name
         cv2.imwrite(name, mixed_image)
         print('{} saved'.format(name))
 
